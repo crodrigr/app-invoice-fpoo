@@ -9,6 +9,7 @@ public class Client {
     private String lastName;
     private String address;
     private String numberCell;
+    private Invoice[] invoices;
     
     //Metodos
 
@@ -22,6 +23,16 @@ public class Client {
         this.lastName = lastName;
         this.address = address;
         this.numberCell = numberCell;
+        this.invoices=new Invoice[10];
+        
+    }
+
+    public Invoice[] getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(Invoice[] invoices) {
+        this.invoices = invoices;
     }
 
     public int getIdClient() {
