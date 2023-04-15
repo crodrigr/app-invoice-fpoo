@@ -16,6 +16,9 @@ public class AppInvoice {
            switch(opcion){
                case 1:
                  System.out.println("Opcion 1. Crear factura");
+                 System.out.println("Crear cliente");
+                 Client c=crearCliente();
+                 showCliente(c);
                break;
                case 2:
                  showProducts();
@@ -36,6 +39,38 @@ public class AppInvoice {
     
     public static void startData(){
        loadProducts();
+    }
+    
+    public static Client crearCliente(){    
+        int id=0;        
+        String nombre;
+        String apellido;
+        String direccion;
+        String numeroCelular;
+        System.out.println("Ingrese el id del cliente");
+        id=leer.nextInt();
+        leer.nextLine();
+        System.out.println("Ingrese el nombre: ");
+        nombre=leer.nextLine();       
+        System.out.println("Ingrese el apellido");
+        apellido=leer.nextLine();        
+        System.out.println("Ingrese la dirección: ");
+        direccion=leer.nextLine();        
+        System.out.println("Ingrese el número de celular: ");
+        numeroCelular=leer.nextLine();        
+        Client cliente=new Client(id,nombre,apellido,direccion,numeroCelular);
+        return cliente; 
+    }
+    
+    public static void showCliente(Client cliente){
+      
+        System.out.println("Datos del Cliente: ");
+        System.out.println("Id: "+cliente.getIdClient());
+        System.out.println("Nombre: "+cliente.getName());
+        System.out.println("Apellido: "+cliente.getLastName());
+        System.out.println("Dirección: "+cliente.getAddress());
+        System.out.println("Número celular: "+cliente.getNumberCell());
+    
     }
     
     public static void loadProducts(){        
