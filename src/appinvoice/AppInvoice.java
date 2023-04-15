@@ -1,5 +1,6 @@
 package appinvoice;
 
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -16,9 +17,15 @@ public class AppInvoice {
            switch(opcion){
                case 1:
                  System.out.println("Opcion 1. Crear factura");
-                 System.out.println("Crear cliente");
-                 Client c=crearCliente();
-                 showCliente(c);
+                 Client client=new Client(1,"Camilo Ernesto","Rodriguez Moreno","Cra 23 No 34-45","3210494949"); 
+                 Invoice invoice=new Invoice(1,new Date(),"Venta POS",client);
+                 Item item1=new Item(1,productos[0]);
+                 Item item2=new Item(2,productos[1]);
+                 Item item3=new Item(1,productos[2]);
+                 invoice.addItem(item1);
+                 invoice.addItem(item1);
+                 invoice.addItem(item1);
+                 
                break;
                case 2:
                  showProducts();
