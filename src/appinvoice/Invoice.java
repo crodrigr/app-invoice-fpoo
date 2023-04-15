@@ -67,6 +67,7 @@ public class Invoice {
     }
 
     public double getTotal() {
+        calcularTotalInvoice();
         return total;
     }
 
@@ -75,7 +76,7 @@ public class Invoice {
     }
     
         
-    public void calcularTotalInvoice(){
+    private void calcularTotalInvoice(){
     
           for(int i=0;i<this.items.length;i++){
               if(this.items[i].getProducto()!=null){
