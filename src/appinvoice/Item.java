@@ -15,6 +15,8 @@ public class Item {
     public Item(int cantidad, Product producto) {
         this.cantidad = cantidad;
         this.producto=producto;
+        calcularTotal();
+        
     }
 
     public Product getProducto() {
@@ -23,6 +25,7 @@ public class Item {
 
     public void setProducto(Product producto) {
         this.producto = producto;
+        calcularTotal();
     }
     
     
@@ -33,6 +36,7 @@ public class Item {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+        calcularTotal();
     }
 
     public double getTotal() {
@@ -41,6 +45,12 @@ public class Item {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+    
+    
+    private void calcularTotal(){
+       this.total=this.cantidad*this.producto.getPrecioVenta();
+      
     }
     
     

@@ -10,15 +10,17 @@ public class Invoice {
     private Date date;
     private String descripcion;
     private Item[] items;
+    private Client cliente;
 
     public Invoice() {
     }
 
-    public Invoice(int id, Date date, String descripcion) {
+    public Invoice(int id, Date date, String descripcion, Client cliente) {
         this.id = id;
         this.date = date;
         this.descripcion = descripcion;
         this.items=new Item[10];
+        this.cliente=cliente;
     }
 
     public Item[] getItems() {
@@ -53,6 +55,14 @@ public class Invoice {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Client getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Client cliente) {
+        this.cliente = cliente;
     }
     
     
