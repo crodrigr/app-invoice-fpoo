@@ -25,17 +25,18 @@ public class AppInvoice {
             opcion = menu();
             switch (opcion) {
                 case 1:
-                    System.out.println("Opcion 1. Crear factura");
-                    Client client = new Client(1, "Camilo Ernesto", "Rodriguez Moreno", "Cra 23 No 34-45", "3210494949");
-                    Invoice invoice = new Invoice(1, new Date(), "Venta POS", client);
-                    Item item1 = new Item(1, productos[0]);
-                    Item item2 = new Item(2, productos[1]);
-                    Item item3 = new Item(1, productos[2]);
-                    invoice.addItem(item1);
-                    invoice.addItem(item2);
-                    invoice.addItem(item3);
-
-                    imprimirFactura(invoice);
+                    System.out.println("Opcion 1. Crear factura");                                       
+                    Client cliente=crearCliente();
+                    System.out.println("Ingrese el Id de la factura: ");
+                    int idFactura=leer.nextInt();
+                    System.out.println("Ingrese la descripción de la factura: ");
+                    String descripcionFactura=leer.nextLine();
+                    Invoice invoice = new Invoice(idFactura, new Date(), descripcionFactura, cliente);
+                    addItemsFactura(invoice);
+                    imprimirFactura(invoice);                
+                    
+                    
+                    
 
                     break;
                 case 2:
@@ -45,7 +46,28 @@ public class AppInvoice {
 
         } while (opcion > 0 && opcion < 3);
     }
-
+    
+    public static void addItemsFactura(Invoice invoice){
+    
+        int controlItems=0;
+        showProducts();
+        int rta=0;
+        
+        do{            
+           System.out.println("Ingrese la posición del producto en el arreglo: ");
+           int pos=leer.nextInt();
+           System.out.println("Ingrese la cantidad: ");
+           int cantidad=leer.nextInt();
+           Item item = new Item(cantidad, productos[pos]);
+           invoice.addItem(item);
+           System.out.println("Desea ingresar más items?: 1. si 2. no.");
+           rta=leer.nextInt();
+           controlItems++;
+        }while(rta==1 && controlItems<=9);
+        
+        
+    }
+    
     public static int menu() {
         System.out.println("____MENU____");
         System.out.println("___1.Crear Factura");
@@ -126,7 +148,7 @@ public class AppInvoice {
     public static void showProducts() {
         System.out.println("\nLISTA DE PRODUCTOS\n");
         for (int i = 0; i < productos.length; i++) {
-            System.out.println("id:" + productos[i].getId() + " " + "nombre: " + productos[i].getNombre() + " " + productos[i].getPrecioVenta());
+            System.out.println("pos:"+i+" id:" + productos[i].getId() + " " + "nombre: " + productos[i].getNombre() + " " + productos[i].getPrecioVenta());
         }
         System.out.println("");
     }
