@@ -12,6 +12,7 @@ public class Invoice {
     private Item[] items;
     private Client cliente;
     private double total;
+    private int posItem=0;
 
     public Invoice() {
     }
@@ -75,13 +76,17 @@ public class Invoice {
         this.total = total;
     }
     
-        
+    public void addItem(Item item){
+       this.items[this.posItem]=item;
+       this.posItem++;
+    }
+    
     private void calcularTotalInvoice(){
     
           for(int i=0;i<this.items.length;i++){
-              if(this.items[i].getProducto()!=null){
+              if(this.items[i]!=null){
                 this.total=this.total+this.items[i].getTotal();
-              }
+             }
           }
     
     }
