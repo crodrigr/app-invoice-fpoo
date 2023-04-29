@@ -1,12 +1,15 @@
 package appinvoice;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
 public class AppInvoice {
 
+    //Variables Globales
     public static Product[] productos = new Product[5];
     public static Scanner leer = new Scanner(System.in);
+    public static ArrayList<Invoice> listInvoices=new ArrayList<>();
 
     public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
     public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
@@ -33,18 +36,18 @@ public class AppInvoice {
                     String descripcionFactura=leer.nextLine();
                     Invoice invoice = new Invoice(idFactura, new Date(), descripcionFactura, cliente);
                     addItemsFactura(invoice);
-                    imprimirFactura(invoice);                
-                    
-                    
-                    
-
+                    imprimirFactura(invoice);
+                    listInvoices.add(invoice);
                     break;
                 case 2:
                     showProducts();
                     break;
+                case 3:
+                    System.out.println("LISTADO DE FACTURAS:  ");
+                    showAllInvoices();
             }
 
-        } while (opcion > 0 && opcion < 3);
+        } while (opcion > 0 && opcion < 4);
     }
     
     public static void addItemsFactura(Invoice invoice){
@@ -72,7 +75,8 @@ public class AppInvoice {
         System.out.println("____MENU____");
         System.out.println("___1.Crear Factura");
         System.out.println("___2.Mostrar Producto");
-        System.out.println("___3.Salir");
+        System.out.println("___3.Mostrar todas las facturas");        
+        System.out.println("___4.Salir");
         return leer.nextInt();
     }
 
@@ -151,6 +155,14 @@ public class AppInvoice {
             System.out.println("pos:"+i+" id:" + productos[i].getId() + " " + "nombre: " + productos[i].getNombre() + " " + productos[i].getPrecioVenta());
         }
         System.out.println("");
+    }
+
+    public static void showAllInvoices(){
+          
+        for(Invoice i: listInvoices){
+             imprimirFactura(i);
+        }
+    
     }
 
 }
